@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云查询</title>
+     <link rel="stylesheet" href="style_query.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+           <a href="index.html" class="back-button">
+            <img src="img/back.png" alt="返回">
+        </a>
+         <h2 class="no-wrap-title">云查询</h2>
+    </div>
+    <div class="search-container">
+        <input type="text" id="keywordInput" placeholder="请输入查询关键词">
+        <button id="searchButton">查询</button>
+    </div>
+    <div id="resultsContainer"></div>
+</div>
+
+<script type="module">
+    import { checkAuth } from '../auth.js';
+    checkAuth(true);
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i=0;i < ca.length;i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    function getPhoneNumber(){
+       return getCookie('phoneNumber');
+     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const keywordInput = document.getElementById('keywordInput');
+        const searchButton = document.getElementById('searchButton');
+        const resultsContainer = document.getElementById('resultsContainer');
+
+        searchButton.addEventListener('click', async () => {
+            const keyword = keywordInput.value;
+            const phoneNumber = getPhoneNumber();
+            resultsContainer.innerHTML = '<p>正在查询...</p>';
+
+          try {
+              let url = `https://query.xn--9kqt24afnh7sw.cn/query?`;
+              if (phoneNumber) {
+                  url += `phoneNumber=${encodeURIComponent(phoneNumber)}&`;
+              }
+              if(keyword){
+                  url+= `keyword=${encodeURIComponent(keyword)}`;
+              }else{
+                  url = url.slice(0, -1);
+              }
+              const response = await fetch(url, {
+                   method: 'GET',
+                   headers: {
+                      'Content-Type': 'application/json',
+                 },
+              });
+             if (!response.ok) {
+               const errorData = await response.json()
+              throw new Error( `查询失败：${errorData.error || response.statusText}`);
+             }
+              const data = await response.json();
+              displayResults(data);
+           } catch (error) {
+              resultsContainer.innerHTML = `<p style="color:red;">查询失败：${error.message}</p>`;
+          }
+        });
+
+         function displayResults(data) {
+          if(!data || !Array.isArray(data)){
+            resultsContainer.innerHTML = `<p style="color:red;">数据格式错误</p>`;
+              return;
+           }
+            if (data.length === 0) {
+            resultsContainer.innerHTML = '<p>暂无数据</p>';
+              return;
+           }
+          let table = '<table><thead><tr>';
+          for (const key in data[0]) {
+             table += `<th>${key}</th>`;
+          }
+           table += '</tr></thead><tbody>';
+             data.forEach(item => {
+                table += '<tr>';
+               for (const key in item) {
+                   table += `<td>${item[key] || ''}</td>`;
+                }
+               table += '</tr>';
+           });
+          table += '</tbody></table>';
+             resultsContainer.innerHTML = table;
+       }
+    });
+</script>
+</body>
+</html>

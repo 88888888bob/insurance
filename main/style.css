@@ -1,0 +1,63 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8; /* 添加背景颜色 */
+    min-height: 100vh; /* 让 body 占据整个视口高度 */
+    justify-content: flex-start; /* 将内容在容器顶部对齐 */
+    box-sizing: border-box;
+    margin: 0;
+}
+
+h1.no-wrap-title {
+    margin-bottom: 40px; /* 增加标题和按钮之间的间距 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    font-size: 2.5rem; /* 增大标题字号 */
+    text-align: center; /* 将标题居中 */
+    color: #333;  /* 设置标题文字颜色 */
+    padding: 10px;
+    letter-spacing: 1px;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 80%;
+    max-width: 600px; /* 稍微增大最大宽度 */
+    margin: 0 auto; /* 左右居中 */
+}
+
+.button {
+   border: 2px solid purple; /* 保持原有的紫色边框 */
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    border-radius: 8px;  /* 添加圆角 */
+     background-color: #fff; /* 设置按钮背景色 */
+     color: #333;  /* 设置按钮文字颜色 */
+}
+
+.button:hover {
+     background-color: rgba(128, 0, 128, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+    .button-container {
+        grid-template-columns: 1fr;
+        width: 95%;
+    }
+     h1.no-wrap-title{
+        font-size: 1.8rem;
+     }
+}

@@ -1,0 +1,77 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+#property-insurance-page{
+    max-width: 90vw;
+    width: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    max-width: 800px;
+    min-width: 300px;
+}
+.header {
+    display: flex;
+    align-items: center;
+     margin-bottom: 10px;
+}
+.back-button {
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.back-button img {
+    width: 30px;
+    height: 30px;
+}
+.page-title {
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+     font-size: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 40px);
+}
+ .no-wrap-title {
+     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+    position: relative;/* 添加相对定位 */
+}
+.insurance-image {
+    max-width: 90%;
+    max-height: 80vh;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+    transition: transform 0.3s ease; /* 添加过渡动画 */
+}
+.rotate-button {
+    position: absolute; /* 使用绝对定位 */
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.rotate-button img {
+      width: 30px;
+    height: 30px;
+}

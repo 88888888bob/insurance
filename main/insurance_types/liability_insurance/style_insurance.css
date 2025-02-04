@@ -1,0 +1,93 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+      padding-top: 20px;
+
+}
+
+#insurance-list {
+    max-width: 90vw;
+    width: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 500px;
+    min-width: 300px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.back-button img {
+    width: 30px;
+    height: 30px;
+}
+
+.list-title {
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 40px);
+}
+
+.no-wrap-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#insurance-list ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+#insurance-list li {
+    margin-bottom: 10px;
+     padding: 5px;
+}
+
+#insurance-list li button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-align: left;
+     border: 1px solid purple;
+    background-color: transparent;
+     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+#insurance-list li button:hover {
+    background-color: rgba(128, 0, 128, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+#image-container {
+    margin-top: 10px;
+    text-align: center;
+
+}
+#insurance-image {
+   max-width: 100%;
+   height: auto;
+
+}
